@@ -137,18 +137,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // FireStoreにコメントデータを保存する
         let name = Auth.auth().currentUser?.displayName
         let comment = cell.commentTextField?.text!
-        let postedComments = postData.comments!
-        
-        if postData.comments != nil {
+        if let postedComments = postData.comments{
             let updateValue = postedComments + "\n" + "\(name!) : \(comment!)"
-            postRef.updateData(["comments": updateValue])
-        }else{
-            let updateValue = name! + "\n" + comment!
             postRef.updateData(["comments": updateValue])
         }
         
-        cell.commentTextField.text = ""
         
+        
+        cell.commentTextField.text = ""
         
         print("DEBUG_PRINT: \(String(describing: name!))が\(String(describing: comment!))を送信しました。")
         
