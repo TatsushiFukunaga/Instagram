@@ -140,6 +140,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let postedComments = postData.comments{
             let updateValue = postedComments + "\n" + "\(name!) : \(comment!)"
             postRef.updateData(["comments": updateValue])
+        }else{
+            let updateValue =   "\(name!) : \(comment!)"
+            postRef.updateData(["comments": updateValue])
         }
         
         
